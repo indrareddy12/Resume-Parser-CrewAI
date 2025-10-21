@@ -33,13 +33,28 @@ def build_ats_writer_agent():
         max_iter=1,
         max_execution_time=120
     )
+    
+    
+def build_evaluator_agent():
+    return Agent(
+        role="ATS Evaluator",
+        goal="Provide accurate ATS scores and actionable improvement recommendations",
+        backstory=("You are a precise ATS scoring expert who quickly identifies gaps and provides specific, "
+            "actionable recommendations. You focus on keyword density, section structure, and measurable achievements."
+        ),
+        model=MODEL,
+        temperature=0.0,
+        max_iter=1,
+        max_execution_time=120
+    )
         
 def build_refiner_agent():
     return Agent(
         role="Bullet Point Refiner",
         goal="Transform bullet points into high-impact, ATS-optimized statements with strong metrics.",
-        backstory="You excel at creating powerful bullet points that combine action verbs, specific achievements, and ("
-        # ... rest of backstory not fully visible ...
+    backstory="""You excel at creating powerful bullet points that combine action verbs, specific achievements,
+and measurable metrics where possible. Focus on clarity, brevity, and ATS-friendly formatting while
+retaining the candidate's voice and important context.""",
         model=MODEL,
         temperature=0.2,
         max_iter=1,
